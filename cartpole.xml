@@ -1,0 +1,78 @@
+<!--
+  cartpole.xml
+  ============
+  MuJoCo model for the cart-pole system matching the acados model in
+  cartpole_model.py exactly.
+
+  CRITICAL CONVENTION: The pendulum body extends UPWARD (+z) from the cart.
+  This means:
+    qpos[1] = 0   → pendulum pointing UP   → acados θ = 0 (upright)  ✓
+    qpos[1] = π   → pendulum pointing DOWN  → acados θ = π (hanging)  ✓
+
+  The hinge axis is "0 -1 0" (-y). This makes positive θ rotate the tip
+  so that x_tip = p - l*sin(θ), matching the exercise PDF convention
+  exactly. With +y axis the angular acceleration sign was flipped.
+
+  Physical parameters (must match cartpole_model.py):
+    M = 1.0 kg    (cart mass)
+    m = 0.1 kg    (pendulum tip mass, point mass)
+    l = 0.8 m     (pendulum length)
+    g = 9.81 m/s² (gravity)
+
+  The pendulum rod is massless (density="0"), with all mass concentrated
+  at the tip sphere. This gives the same dynamics as the simplified
+  point-mass-on-massless-rod model used in acados.
+-->
+<mujoco model="cartpole">
+
+  <option gravity="0 0 -9.81" timestep="0.002">
+    <!-- Disable contacts — the cart-pole is a pure kinematic chain -->
+    <flag contact="disable"/>
+  </option>
+
+  <default>
+    <joint damping="0" armature="0" frictionloss="0"/>
+    <geom contype="0" conaffinity="0"/>
+  </default>
+
+  <worldbody>
+    <light diffuse=".6 .6 .6" pos="0 0 4" dir="0 0 -1"/>
+    <geom type="plane" size="50 50 0.1" rgba=".9 .9 .9 1"/>
+
+    <!-- Visual rail for the cart -->
+    <geom type="capsule" fromto="-10 0 1.0 10 0 1.0" size="0.015"
+          rgba="0.4 0.4 0.4 0.3"/>
+
+    <!-- Cart: slides along x-axis, mass = M = 1.0 kg -->
+    <body name="cart" pos="0 0 1.0">
+      <joint name="slider" type="slide" axis="1 0 0"/>
+      <geom type="box" size="0.2 0.15 0.08" mass="1.0"
+            rgba="0.2 0.3 0.8 1"/>
+
+      <!-- Pendulum: extends UPWARD (+z) from the top of the cart.
+           The rod is massless (density=0); only the tip has mass. -->
+      <body name="pole" pos="0 0 0.08">
+        <joint name="hinge" type="hinge" axis="0 -1 0"/>
+        <!-- Massless rod -->
+        <geom type="capsule" fromto="0 0 0 0 0 0.8" size="0.025"
+              density="0" rgba="0.9 0.4 0.1 1"/>
+        <!-- Point mass at tip: m = 0.1 kg at distance l = 0.8 m -->
+        <body name="tip" pos="0 0 0.8">
+          <geom type="sphere" size="0.05" mass="0.1"
+                rgba="0.9 0.2 0.1 1"/>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <!-- Actuator: horizontal force on the cart (matches u = F in acados) -->
+  <actuator>
+    <motor name="force" joint="slider" gear="1" ctrllimited="false"/>
+  </actuator>
+
+  <!-- Keyframe: pendulum hanging down (θ = π) — the MPC starting state -->
+  <keyframe>
+    <key name="hanging_down" qpos="0 3.141592653589793" qvel="0 0"/>
+  </keyframe>
+
+</mujoco>
