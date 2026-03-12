@@ -1,6 +1,9 @@
 # Cart-Pole NMPC with acados
 ## Exercise 10 — Diehl NOC Course (Winter 2025/26)
 
+## Demo
+![Cart-pole MPC demo](2026-03-12%2009-28-21.gif)
+
 ---
 
 ## Step 0: Prerequisites
