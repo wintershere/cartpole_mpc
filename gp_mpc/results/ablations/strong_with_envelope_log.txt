@@ -1,0 +1,31 @@
+=== scenario strong: true plant {'M': 1.6, 'm': 0.25, 'l': 0.8, 'g': 9.81, 'b_c': 4.0, 'f_c': 3.5, 'b_p': 0.012, 'gear': 0.65}
+[1] closed loop, models without learning
+  nominal                swing_up_s=nan±nan  fell=1±0  settled_rms_m=1.12±0.41  ss_offset_m=0.474±0.39  theta_rms_rad=1.16±0.53  max_abs_px_m=2.88±0.13  u_rms_N=52.5±5.6  fb_ms_mean=0.43±0.053  fb_ms_max=4.12±3.5
+  oracle                 swing_up_s=1.68±0.033  fell=0±0  settled_rms_m=0.188±0.0016  ss_offset_m=0.213±0.0014  theta_rms_rad=0.121±0.00078  max_abs_px_m=1.46±0.011  u_rms_N=16.9±0.35  fb_ms_mean=0.351±0.014  fb_ms_max=0.848±0.17
+[2] data from nominal MPC + exploration
+  collected 12 episodes with nominal MPC: 1960 steps, 12 fell
+  collected 4 episodes with nominal MPC (test): 903 steps, 4 fell
+  train 1960 samples, test 903 samples
+[3] residual models, one-step prediction on held-out episodes
+  GP fit 60.4 s; kernels: ['1.2**2 * RBF(length_scale=[6.17, 100, 0.529, 100, 3.66]) + WhiteKernel(noise_level=0.000194)', '1.79**2 * RBF(length_scale=[17.9, 2.65, 0.807, 47, 2.58]) + WhiteKernel(noise_level=0.000284)']
+  nominal (no learning)      rmse dvx=1.1586 m/s  dw=1.2291 rad/s   R2 dvx=-0.003 dw=-0.012
+  GP (300 pts)               rmse dvx=0.0280 m/s  dw=0.0340 rad/s   R2 dvx=0.999 dw=0.999
+  boosting (HistGB)          rmse dvx=0.0349 m/s  dw=0.1611 rad/s   R2 dvx=0.999 dw=0.983
+  bagging (random forest)    rmse dvx=0.0435 m/s  dw=0.1314 rad/s   R2 dvx=0.999 dw=0.988
+  neural net (MLP 64x64)     rmse dvx=0.0495 m/s  dw=0.0650 rad/s   R2 dvx=0.998 dw=0.997
+  GP 2-sigma coverage on test: dvx=0.93 dw=0.91
+[4] GP-MPC (round 1)
+  data envelope (soft bounds): |vx|<=9.30 m/s, |w|<=5.39 rad/s
+  solver build 21.1 s
+  gp_mpc_r1              swing_up_s=1.9±0.041  fell=0±0  settled_rms_m=0.216±0.0031  ss_offset_m=0.217±0.0022  theta_rms_rad=0.114±0.0018  max_abs_px_m=1.54±0.0079  u_rms_N=18.1±0.19  fb_ms_mean=0.434±0.021  fb_ms_max=0.863±0.1
+[5] round 2: data from GP-MPC + exploration, refit on all data
+  collected 6 episodes with GP-MPC r1: 2100 steps, 1 fell
+  GP fit on 4060 samples, 186.4 s
+  GP round 2                 rmse dvx=0.0261 m/s  dw=0.0390 rad/s   R2 dvx=0.999 dw=0.999
+  gp_mpc_r2              swing_up_s=1.88±0.022  fell=0±0  settled_rms_m=0.147±0.0015  ss_offset_m=0.0153±0.0015  theta_rms_rad=0.111±0.0011  max_abs_px_m=1.36±0.028  u_rms_N=17.7±0.49  fb_ms_mean=0.61±0.02  fb_ms_max=1.41±0.44
+[5] round 3: data from GP-MPC + exploration, refit on all data
+  collected 6 episodes with GP-MPC r2: 1786 steps, 1 fell
+  GP fit on 5846 samples, 126.1 s
+  GP round 3                 rmse dvx=0.0365 m/s  dw=0.0347 rad/s   R2 dvx=0.999 dw=0.999
+  gp_mpc_r3              swing_up_s=1.88±0.23  fell=0±0  settled_rms_m=0.15±0.0084  ss_offset_m=0.0602±0.0066  theta_rms_rad=0.104±0.00079  max_abs_px_m=1.35±0.074  u_rms_N=18±0.98  fb_ms_mean=2.25±0.74  fb_ms_max=17.8±6.4
+done in 713 s

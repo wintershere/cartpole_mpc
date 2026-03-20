@@ -7,3 +7,16 @@ __pycache__/
 c_generated_code/
 *.so
 .claude/
+
+# GP-MPC
+.venv/
+gp_mpc/build/
+gp_mpc/results/*/raw/
+gp_mpc/results/*.out
+!gp_mpc/results/**/metrics.json
+!gp_mpc/results/**/robust_check*.json
+gp_mpc/results/delay/*/episode0.pkl
+gp_mpc/results/*/episode0.pkl
+!gp_mpc/results/robustness/*.json
+gp_mpc/results/delay/*/models.pkl
+gp_mpc/LEARN.md

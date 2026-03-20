@@ -1,0 +1,21 @@
+=== medium mismatch + dead time 120 ms
+[1] nominal MPC
+  nominal MPC                        fell 100%  settled nan m  offset 1.339 m  pole nan rad  step 2.93 ms
+[2] data
+  data from nominal MPC: 386 steps
+[3] identify the dead time (and motor lag)
+  identified 3 steps = 120 ms, tau 0.0 s  (true 3 steps, tau 0.0 s); best fits: d=3 tau=0.0: 3.16, d=3 tau=0.02: 55.26, d=2 tau=0.05: 69.43
+[4] delay-aware MPC, no GP
+  delay-aware MPC                    fell 100%  settled 1.657 m  offset 1.107 m  pole 2.071 rad  step 0.94 ms
+[5] data
+  data from delay-aware MPC: 617 steps
+[6] GP-MPC without the delay in its model
+  GP-MPC, delay not modelled         fell 100%  settled nan m  offset 0.783 m  pole nan rad  step 6.11 ms
+[7] delay-aware GP-MPC
+  GP on 1003 samples, 25 s
+  delay-aware GP-MPC                 fell   0%  settled 0.287 m  offset 0.279 m  pole 0.130 rad  step 2.44 ms
+[8] one more round: data from delay-aware GP-MPC, refit
+  data from delay-aware GP-MPC: 4200 steps
+  GP on 5203 samples, 29 s
+  delay-aware GP-MPC, round 2        fell  40%  settled 0.129 m  offset 0.294 m  pole 0.110 rad  step 2.48 ms
+done in 329 s

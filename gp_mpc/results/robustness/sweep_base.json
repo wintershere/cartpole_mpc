@@ -1,0 +1,150 @@
+{
+ "gp": "results/medium/raw/gp_r1.pkl",
+ "n": 5,
+ "rows": [
+  {
+   "kind": "delay",
+   "value": 0,
+   "ctrl": "nominal",
+   "fell": 0.0,
+   "settled": 0.3729742167423199,
+   "offset": 0.28258891577254086,
+   "theta": 0.30977540907697154
+  },
+  {
+   "kind": "delay",
+   "value": 0,
+   "ctrl": "gp_mpc",
+   "fell": 0.0,
+   "settled": 0.04025105341227782,
+   "offset": 0.04007432238625772,
+   "theta": 0.1269375363096875
+  },
+  {
+   "kind": "delay",
+   "value": 1,
+   "ctrl": "nominal",
+   "fell": 1.0,
+   "settled": 0.24696523937015963,
+   "offset": 0.9520953981564622,
+   "theta": 0.5732917119420994
+  },
+  {
+   "kind": "delay",
+   "value": 1,
+   "ctrl": "gp_mpc",
+   "fell": 0.8,
+   "settled": 0.04303918932760667,
+   "offset": 0.5809212519597778,
+   "theta": 0.1457728807316928
+  },
+  {
+   "kind": "delay",
+   "value": 2,
+   "ctrl": "nominal",
+   "fell": 1.0,
+   "settled": NaN,
+   "offset": 1.1843760538986081,
+   "theta": NaN
+  },
+  {
+   "kind": "delay",
+   "value": 2,
+   "ctrl": "gp_mpc",
+   "fell": 1.0,
+   "settled": NaN,
+   "offset": 0.6421896933122762,
+   "theta": NaN
+  },
+  {
+   "kind": "delay",
+   "value": 3,
+   "ctrl": "nominal",
+   "fell": 1.0,
+   "settled": NaN,
+   "offset": 1.4783761525057544,
+   "theta": NaN
+  },
+  {
+   "kind": "delay",
+   "value": 3,
+   "ctrl": "gp_mpc",
+   "fell": 1.0,
+   "settled": NaN,
+   "offset": 1.7496392779000949,
+   "theta": NaN
+  },
+  {
+   "kind": "tilt",
+   "value": 0.03,
+   "ctrl": "nominal",
+   "fell": 0.0,
+   "settled": 0.3806158507131422,
+   "offset": 0.32047072224362505,
+   "theta": 0.3069641016014378
+  },
+  {
+   "kind": "tilt",
+   "value": 0.03,
+   "ctrl": "gp_mpc",
+   "fell": 0.0,
+   "settled": 0.156457227637463,
+   "offset": 0.15451698440509481,
+   "theta": 0.13229101018431894
+  },
+  {
+   "kind": "tilt",
+   "value": 0.06,
+   "ctrl": "nominal",
+   "fell": 0.0,
+   "settled": 0.4012851158675483,
+   "offset": 0.353701517731028,
+   "theta": 0.30371973855010703
+  },
+  {
+   "kind": "tilt",
+   "value": 0.06,
+   "ctrl": "gp_mpc",
+   "fell": 0.0,
+   "settled": 0.30263215604443267,
+   "offset": 0.3107531053273605,
+   "theta": 0.13585425059361608
+  },
+  {
+   "kind": "tilt",
+   "value": 0.1,
+   "ctrl": "nominal",
+   "fell": 0.0,
+   "settled": 0.44850691317267277,
+   "offset": 0.3887225358211603,
+   "theta": 0.3003277757045117
+  },
+  {
+   "kind": "tilt",
+   "value": 0.1,
+   "ctrl": "gp_mpc",
+   "fell": 0.0,
+   "settled": 0.4809227542326524,
+   "offset": 0.4847162593540336,
+   "theta": 0.15874790447053982
+  },
+  {
+   "kind": "motor lag",
+   "value": 0.05,
+   "ctrl": "nominal",
+   "fell": 1.0,
+   "settled": NaN,
+   "offset": 1.4929063931252464,
+   "theta": NaN
+  },
+  {
+   "kind": "motor lag",
+   "value": 0.05,
+   "ctrl": "gp_mpc",
+   "fell": 1.0,
+   "settled": NaN,
+   "offset": 1.2258440712950314,
+   "theta": NaN
+  }
+ ]
+}

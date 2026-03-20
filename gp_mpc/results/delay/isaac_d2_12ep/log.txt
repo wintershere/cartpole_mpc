@@ -1,0 +1,21 @@
+=== Isaac Sim cart-pole (hidden: gain 0.65, rail friction 4.0 N s/m + 3.5 N, dead time 80 ms)
+[1] nominal MPC
+  nominal MPC                        fell 100%  settled 0.644 m  offset 0.578 m  pole 1.087 rad  step 0.62 ms
+[2] data
+  data from nominal MPC: 1330 steps
+[3] identify the dead time (and motor lag)
+  identified 2 steps = 80 ms, tau 0.0 s  (true 2 steps, tau 0.0 s); best fits: d=2 tau=0.0: 5.76, d=2 tau=0.02: 20.81, d=1 tau=0.05: 23.20
+[4] delay-aware MPC, no GP
+  delay-aware MPC                    fell 100%  settled nan m  offset 0.716 m  pole nan rad  step 1.21 ms
+[5] data
+  data from delay-aware MPC: 641 steps
+[6] GP-MPC without the delay in its model
+  GP-MPC, delay not modelled         fell 100%  settled 1.135 m  offset 0.899 m  pole 2.270 rad  step 2.68 ms
+[7] delay-aware GP-MPC
+  GP on 1971 samples, 15 s
+  delay-aware GP-MPC                 fell  10%  settled 0.168 m  offset 0.220 m  pole 0.139 rad  step 1.99 ms
+[8] one more round: data from delay-aware GP-MPC, refit
+  data from delay-aware GP-MPC: 2650 steps
+  GP on 4621 samples, 18 s
+  delay-aware GP-MPC, round 2        fell  80%  settled 0.196 m  offset 0.346 m  pole 0.129 rad  step 2.28 ms
+done in 425 s

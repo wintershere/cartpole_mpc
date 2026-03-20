@@ -1,0 +1,22 @@
+=== scenario isaac: true plant None
+[1] closed loop, models without learning
+  isaac plant: {'dof_names': ['slider_to_cart', 'cart_to_pole'], 'n_sub': 8, 'physics_dt': 0.005, 'ctrl_dt': 0.04, 'gear': 0.65, 'rail_viscous': 4.0, 'rail_coulomb': 3.5, 'body_names': ['slider', 'cart', 'pole'], 'body_masses': [7.199999809265137, 1.0, 1.0], 'dof_limits': [[-4.0, 4.0], [-3.4028234663852886e+38, 3.4028234663852886e+38]]}
+  nominal                swing_up_s=nan±nan  fell=1±0  settled_rms_m=nan±nan  ss_offset_m=0.918±0.57  theta_rms_rad=2.62±0  max_abs_px_m=2.86±0.11  u_rms_N=67.2±2.9  fb_ms_mean=1.2±0.71  fb_ms_max=9.53±5
+[2] data from nominal MPC + exploration
+  collected 24 episodes with nominal MPC: 2805 steps, 21 fell
+  collected 4 episodes with nominal MPC (test): 1152 steps, 1 fell
+  train 2805 samples, test 1152 samples
+[3] residual models, one-step prediction on held-out episodes
+  GP fit 19.2 s; kernels: ['0.915**2 * RBF(length_scale=[4.02, 7.03, 1.07, 4.96, 1.47]) + WhiteKernel(noise_level=0.000671)', '1.82**2 * RBF(length_scale=[3.94, 1.88, 3.92, 1.22, 1.94]) + WhiteKernel(noise_level=0.00241)']
+  nominal (no learning)      rmse dvx=0.8604 m/s  dw=0.9020 rad/s   R2 dvx=-0.001 dw=-0.011
+  GP (300 pts)               rmse dvx=0.0373 m/s  dw=0.0619 rad/s   R2 dvx=0.998 dw=0.995
+  boosting (HistGB)          rmse dvx=0.0422 m/s  dw=0.1093 rad/s   R2 dvx=0.998 dw=0.985
+  bagging (random forest)    rmse dvx=0.0545 m/s  dw=0.0974 rad/s   R2 dvx=0.996 dw=0.988
+  neural net (MLP 64x64)     rmse dvx=0.0511 m/s  dw=0.0830 rad/s   R2 dvx=0.996 dw=0.991
+  GP 2-sigma coverage on test: dvx=0.96 dw=0.95
+[4] GP-MPC (round 1)
+  solver build 19.1 s
+  gp_mpc_r1              swing_up_s=1.96±0.35  fell=0±0  settled_rms_m=0.216±0.0014  ss_offset_m=0.24±0.001  theta_rms_rad=0.113±0.0011  max_abs_px_m=1.36±0.0067  u_rms_N=17±2.1  fb_ms_mean=0.565±0.01  fb_ms_max=1.32±0.2
+[4b] local GP-MPC (Hewing et al. 2020): 10 inducing points along the predicted trajectory
+  gp_local_r1            swing_up_s=nan±nan  fell=1±0  settled_rms_m=nan±nan  ss_offset_m=0.606±0.56  theta_rms_rad=nan±nan  max_abs_px_m=2.87±0.098  u_rms_N=68.5±13  fb_ms_mean=0.97±0.39  fb_ms_max=8.4±3.3
+done in 261 s
